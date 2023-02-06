@@ -1,0 +1,5 @@
+jupyter/.*
+.venv
+__pycache__
+*.csv
+__pypackages__
