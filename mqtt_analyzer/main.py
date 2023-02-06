@@ -46,14 +46,14 @@ class Analyzer:
         client.loop_forever()
 
     def parse_message(self, message):
-        tx=message['rxInfo'][0]
-        #loc=tx['location']
-        obj=message['object']
+        for rx in message['rxInfo']:
+            #loc=tx['location']
+            obj=message['object']
 
-        out = f"{tx['time']},{message['deviceInfo']['deviceName']},{obj['latitude']},{obj['longitude']},{tx['rssi']},{tx['snr']}"
-        print(out)
-        self.f.write(out + "\n")
-        self.f.flush()
+            out = f"{rx['time']},{message['deviceInfo']['deviceName']},{obj['latitude']},{obj['longitude']},{rx['rssi']},{rx['snr']},{rx['gatewayId']}"
+            print(out)
+            self.f.write(out + "\n")
+            self.f.flush()
 
     def test(self):
         mock = Mock()
